@@ -1,7 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
 import TechniciansView from '../views/TechniciansView.vue'
-// import EquipmentView from '@/views/EquipmentView.vue'
+import EquipmentView from '@/views/EquipmentView.vue'
 // import ShiftsView from '@/views/ShiftsView.vue'
 
 const routes = [
@@ -20,11 +20,11 @@ const routes = [
         name: 'Technicians',
         component: TechniciansView
     },
-    // {
-    //     path: '/equipment',
-    //     name: 'Equipment',
-    //     component: EquipmentView
-    // },
+    {
+        path: '/equipment',
+        name: 'Equipment',
+        component: EquipmentView
+    },
     // {
     //     path: '/shifts',
     //     name: 'Shifts',

@@ -5,7 +5,7 @@ A modern, responsive web application for mining operations management built with
 ![Mining Frontend](https://picsum.photos/800/400)
 
 ## Demo Link
-🚀[Click here](https://mining-frontend-pi.vercel.app/dashboard)
+🚀[Click here](https://mining-frontend-pi.vercel.app)
 
 ## Features
 

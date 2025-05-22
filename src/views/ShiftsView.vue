@@ -28,7 +28,7 @@
 
       <!-- Empty state -->
       <EmptyState
-        v-else-if="filteredShifts.length === 0"
+        v-else-if="filteredShifts.length === 0 && !showForm"
         title="No shifts found"
         :message="searchQuery || filterDate || filterTechnician ? 'Try changing your search or filters' : 'Get started by adding your first shift'"
       >
@@ -41,10 +41,11 @@
       </EmptyState>
 
       <!-- Main content area -->
-      <div v-else class="flex flex-col lg:flex-row gap-6">
+      <div v-else-if="filteredShifts.length > 0 || showForm" class="flex flex-col lg:flex-row gap-6">
         <!-- List view -->
         <div class="flex-1" :class="{'hidden lg:block': showForm}">
           <ShiftTable 
+            v-if="filteredShifts.length > 0"
             :shifts="filteredShifts"
             @edit="onEdit"
             @delete="confirmDelete"

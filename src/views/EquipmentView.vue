@@ -29,7 +29,7 @@
 
       <!-- Empty state -->
       <EmptyState
-        v-else-if="filteredEquipment.length === 0"
+        v-else-if="filteredEquipment.length === 0 && !showForm"
         title="No equipment found"
         :message="searchQuery || typeFilter || statusFilter ? 'Try changing your search or filters' : 'Get started by adding your first equipment'"
       >
@@ -42,11 +42,11 @@
       </EmptyState>
 
       <!-- Main content area -->
-      <div v-else class="flex flex-col lg:flex-row gap-6">
+      <div v-else-if="filteredEquipment.length > 0 || showForm" class="flex flex-col lg:flex-row gap-6">
         <!-- List/Grid view based on selection -->
         <div class="flex-1" :class="{'hidden': viewMode === 'grid' && showForm}">
           <EquipmentTable 
-            v-if="viewMode === 'list'" 
+            v-if="viewMode === 'list' && filteredEquipment.length > 0" 
             :equipment="filteredEquipment"
             @edit="onEdit"
             @delete="confirmDelete"
@@ -55,7 +55,7 @@
           />
           
           <EquipmentGrid
-            v-else
+            v-else-if="filteredEquipment.length > 0"
             :equipment="filteredEquipment"
             @edit="onEdit"
             @delete="confirmDelete"

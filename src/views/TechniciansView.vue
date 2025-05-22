@@ -28,7 +28,7 @@
 
       <!-- Empty state -->
       <EmptyState
-        v-else-if="filteredTechnicians.length === 0"
+        v-else-if="filteredTechnicians.length === 0 && !showForm"
         title="No technicians found"
         :message="searchQuery || filterRole ? 'Try changing your search or filter' : 'Get started by adding your first technician'"
       >
@@ -41,18 +41,18 @@
       </EmptyState>
 
       <!-- Main content area -->
-      <div v-else class="flex flex-col lg:flex-row gap-6">
+      <div v-else-if="filteredTechnicians.length > 0 || showForm" class="flex flex-col lg:flex-row gap-6">
         <!-- List/Grid view based on selection -->
         <div class="flex-1" :class="{'hidden': viewMode === 'grid' && showForm}">
           <TechnicianTable 
-            v-if="viewMode === 'list'" 
+            v-if="viewMode === 'list' && filteredTechnicians.length > 0" 
             :technicians="filteredTechnicians"
             @edit="onEdit"
             @delete="confirmDelete"
           />
           
           <TechnicianGrid
-            v-else
+            v-else-if="filteredTechnicians.length > 0"
             :technicians="filteredTechnicians"
             @edit="onEdit"
             @delete="confirmDelete"

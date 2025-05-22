@@ -4,6 +4,9 @@ A modern, responsive web application for mining operations management built with
 
 ![Mining Frontend](https://picsum.photos/800/400)
 
+## Demo Link
+🚀[Click here](https://mining-frontend-pi.vercel.app/dashboard)
+
 ## Features
 
 - 📱 **Responsive Design**: Works seamlessly across desktop, tablet, and mobile devices
@@ -11,7 +14,6 @@ A modern, responsive web application for mining operations management built with
 - 🔄 **Real-time Data**: Monitor mining operations with live updates
 - 📊 **Data Visualization**: Comprehensive dashboards and reports
 - 🌙 **Dark/Light Mode**: Switchable themes for different lighting conditions
-- 🔒 **Secure Authentication**: Role-based access control
 - 🚀 **Fast Performance**: Optimized for speed with Vite
 
 ## Tech Stack

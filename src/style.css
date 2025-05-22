@@ -1,64 +1,234 @@
 @import "tailwindcss";
+
+/* Define our custom theme with proper light and dark values */
+@plugin "daisyui/theme" {
+  name: "mining";
+  default: true;
+  color-scheme: light;
+  
+  /* Color palette based on image - light theme */
+  --color-primary: oklch(55% 0.2 260); /* Strong blue */
+  --color-primary-content: oklch(100% 0.01 0);
+  --color-secondary: oklch(65% 0.15 233); /* Lighter blue */
+  --color-secondary-content: oklch(100% 0.01 0);
+  --color-accent: oklch(78% 0.118 156); /* Teal accent */
+  --color-accent-content: oklch(15% 0.01 156);
+  --color-neutral: oklch(35% 0.01 240);
+  --color-neutral-content: oklch(100% 0.01 0);
+  
+  /* Base colors - light mode */
+  --color-base-100: oklch(100% 0 0); /* Pure white background */
+  --color-base-200: oklch(97% 0.01 240); /* Very light gray with slight blue tint */
+  --color-base-300: oklch(93% 0.02 240); /* Light gray with slight blue tint */
+  --color-base-content: oklch(25% 0 0); /* Dark text */
+  
+  /* Status colors */
+  --color-info: oklch(65% 0.15 195);
+  --color-info-content: oklch(100% 0.01 0);
+  --color-success: oklch(65% 0.15 145);
+  --color-success-content: oklch(100% 0.01 0);
+  --color-warning: oklch(75% 0.15 85);
+  --color-warning-content: oklch(15% 0.01 85);
+  --color-error: oklch(65% 0.15 30);
+  --color-error-content: oklch(100% 0.01 0);
+  
+  /* Visual settings */
+  --radius-selector: 0.375rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1; 
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "mining-dark";
+  color-scheme: dark;
+  
+  /* Color palette - dark theme */
+  --color-primary: oklch(55% 0.2 260);
+  --color-primary-content: oklch(100% 0.01 0);
+  --color-secondary: oklch(65% 0.15 233);
+  --color-secondary-content: oklch(100% 0.01 0);
+  --color-accent: oklch(78% 0.118 156);
+  --color-accent-content: oklch(15% 0.01 156);
+  --color-neutral: oklch(35% 0.01 240);
+  --color-neutral-content: oklch(100% 0.01 0);
+  
+  /* Base colors - dark mode */
+  --color-base-100: oklch(22% 0.01 240); /* Dark blue-gray */
+  --color-base-200: oklch(18% 0.01 240); /* Darker blue-gray */
+  --color-base-300: oklch(15% 0.01 240); /* Very dark blue-gray */
+  --color-base-content: oklch(95% 0.01 0); /* Light text */
+  
+  /* Status colors */
+  --color-info: oklch(65% 0.15 195);
+  --color-info-content: oklch(100% 0.01 0);
+  --color-success: oklch(65% 0.15 145);
+  --color-success-content: oklch(100% 0.01 0);
+  --color-warning: oklch(75% 0.15 85);
+  --color-warning-content: oklch(15% 0.01 85);
+  --color-error: oklch(65% 0.15 30);
+  --color-error-content: oklch(100% 0.01 0);
+  
+  /* Visual settings */
+  --radius-selector: 0.375rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark, cyberpunk;
+  themes: mining --default, mining-dark --prefersdark;
+  logs: false;
 }
 
+/* Typography system */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --font-heading: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Base styles for consistent UI */
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--fallback-b200,oklch(var(--b2)/1)); /* Ensure body has background color */
+  color: var(--fallback-bc,oklch(var(--bc)/1)); /* Ensure body has text color */
+}
+
+/* Typography scale */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+  letter-spacing: -0.015em;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 2.25rem;
+  font-weight: 700;
 }
 
-.card {
-  padding: 2em;
+h2 {
+  font-size: 1.875rem;
 }
 
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* App structure */
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--fallback-b200,oklch(var(--b2)/1)); /* Ensure app has background color */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Transitions for page changes */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+/* Card refinements for management UI */
+.card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  background-color: var(--fallback-b100,oklch(var(--b1)/1)); /* Ensure cards have background color */
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Table refinements for data presentation */
+.table {
+  background-color: var(--fallback-b100,oklch(var(--b1)/1));
+}
+
+.table :where(thead) {
+  background-color: var(--fallback-b200,oklch(var(--b2)/1));
+}
+
+.table :where(tbody tr) {
+  border-bottom-color: var(--fallback-b300,oklch(var(--b3)/1));
+}
+
+/* Link styling with proper colors */
+a {
+  font-weight: 500;
+  color: var(--fallback-p,oklch(var(--p)/1));
+  text-decoration: inherit;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--fallback-pf,oklch(var(--pf)/1));
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--fallback-p,oklch(var(--p)/1));
+  outline-offset: 2px;
+}
+
+/* Management-focused UI improvements */
+.stats {
+  background-color: var(--fallback-b100,oklch(var(--b1)/1));
+  border-radius: var(--radius-box);
+}
+
+.dashboard-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-card .card-body {
+  flex: 1;
 }
